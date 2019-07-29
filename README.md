@@ -1,6 +1,6 @@
 # SSAFY_Work
 
-#July Work
+# July Work
 > GPIO
 > Assembly
 > Module Programming
