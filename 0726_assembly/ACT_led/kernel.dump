@@ -1,0 +1,25 @@
+
+kernel.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e59f0018 	ldr	r0, [pc, #24]	; 8020 <_start+0x20>
+    8004:	e3a01001 	mov	r1, #1
+    8008:	e1a01a81 	lsl	r1, r1, #21
+    800c:	e5801010 	str	r1, [r0, #16]
+    8010:	e3a01001 	mov	r1, #1
+    8014:	e1a01781 	lsl	r1, r1, #15
+    8018:	e5801020 	str	r1, [r0, #32]
+    801c:	eafffffe 	b	801c <_start+0x1c>
+    8020:	3f200000 	svccc	0x00200000
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001341 	andeq	r1, r0, r1, asr #6
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	00000009 	andeq	r0, r0, r9
+  10:	01080106 	tsteq	r8, r6, lsl #2

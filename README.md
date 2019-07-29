@@ -1,4 +1,4 @@
-# SSAFY_Work
+# SSAFY Work
 
 # July Work
 > GPIO \
