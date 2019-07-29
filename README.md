@@ -1,7 +1,7 @@
 # SSAFY_Work
 
 # July Work
-> GPIO
-> Assembly
-> Module Programming
-> System Programming
+> GPIO\n
+> Assembly\n
+> Module Programming\n
+> System Programming\n
