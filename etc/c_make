@@ -1,0 +1,24 @@
+#!/bin/bash
+SRC_FILE_LIST=`ls | grep "\.c"`
+F_MAKE=Makefile
+DATA=tmp.dat
+
+for i in $SRC_FILE_LIST
+do
+	echo $i >> "$DATA"
+done
+
+echo "default:" > $F_MAKE
+while IFS='.' read -r f1 f2
+do
+	echo -e "\tgcc -o $f1 $f1.c" >> $F_MAKE
+done < "$DATA"
+echo "clean:" >> $F_MAKE
+echo -e -n "\trm " >> $F_MAKE
+while IFS='.' read -r f1 f2
+do
+	echo -n "$f1 " >> $F_MAKE
+done < "$DATA"
+echo >> $F_MAKE
+
+rm $DATA
