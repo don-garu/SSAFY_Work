@@ -1,5 +1,5 @@
 #!/bin/bash
-SRC_FILE_LIST=`ls | grep "\.c"`
+SRC_FILE_LIST=`ls | grep "\.c$"`
 F_MAKE=Makefile
 DATA=tmp.dat
 
@@ -8,10 +8,23 @@ do
 	echo $i >> "$DATA"
 done
 
-echo "default:" > $F_MAKE
+if [ "$1" = "sql" ]
+then
+	echo "CFLAGS= -I/usr/include/mysql" > $F_MAKE
+	echo "LIBS= -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -lrt -latomic -ldl" >> $F_MAKE
+	echo "default:" >> $F_MAKE
+else
+	echo "default:" > $F_MAKE
+fi
+
 while IFS='.' read -r f1 f2
 do
-	echo -e "\tgcc -o $f1 $f1.c" >> $F_MAKE
+	if [ "$1" = "test" ]
+	then
+		echo -e "\tgcc -o $f1 \$(CFLAGS) $f1.c \$(LIBS)" >> $F_MAKE
+	else
+		echo -e "\tgcc -o $f1 $f1.c" >> $F_MAKE
+	fi
 done < "$DATA"
 echo "clean:" >> $F_MAKE
 echo -e -n "\trm " >> $F_MAKE
