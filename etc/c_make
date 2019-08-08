@@ -32,23 +32,3 @@ do
 done
 
 echo >> $F_MAKE
-
-
-#while IFS='.' read -r f1 f2
-#do
-#	if [ "$1" = "test" ]
-#	then
-#		echo -e "\tgcc -o $f1 \$(CFLAGS) $f1.c \$(LIBS)" >> $F_MAKE
-#	else
-#		echo -e "\tgcc -o $f1 $f1.c" >> $F_MAKE
-#	fi
-#done < "$DATA"
-#echo "clean:" >> $F_MAKE
-#echo -e -n "\trm " >> $F_MAKE
-#while IFS='.' read -r f1 f2
-#do
-#	echo -n "$f1 " >> $F_MAKE
-#done < "$DATA"
-#echo >> $F_MAKE
-
-#rm $DATA
