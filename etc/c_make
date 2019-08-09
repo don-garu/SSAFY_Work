@@ -9,6 +9,9 @@ if [ "$1" = "sql" ]
 then
 	echo "CFLAGS= -I/usr/include/mysql" >> $F_MAKE
 	echo "LIBS= -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -lrt -latomic -ldl" >> $F_MAKE
+elif [ "$1" = "ptd" ]
+then
+	echo "CFLAGS= -pthread" >> $F_MAKE
 fi
 
 echo "default:" >> $F_MAKE
@@ -18,6 +21,9 @@ do
 	if [ "$1" = "sql" ]
 	then
 		echo -e "\tgcc -o $i \$(CFLAGS) $i.c \$(LIBS)" >> $F_MAKE
+	elif [ "$1" = "ptd" ]
+	then
+		echo -e "\tgcc -o $i \$(CFLAGS) $i.c" >> $F_MAKE
 	else
 		echo -e "\tgcc -o $i $i.c" >> $F_MAKE
 	fi
@@ -32,23 +38,3 @@ do
 done
 
 echo >> $F_MAKE
-
-
-#while IFS='.' read -r f1 f2
-#do
-#	if [ "$1" = "test" ]
-#	then
-#		echo -e "\tgcc -o $f1 \$(CFLAGS) $f1.c \$(LIBS)" >> $F_MAKE
-#	else
-#		echo -e "\tgcc -o $f1 $f1.c" >> $F_MAKE
-#	fi
-#done < "$DATA"
-#echo "clean:" >> $F_MAKE
-#echo -e -n "\trm " >> $F_MAKE
-#while IFS='.' read -r f1 f2
-#do
-#	echo -n "$f1 " >> $F_MAKE
-#done < "$DATA"
-#echo >> $F_MAKE
-
-#rm $DATA
